@@ -1,3 +1,24 @@
+###############################
+## Taller Unidad 2 _ Punto 1 ##
+###############################
+
+pedidos = [
+    ["45", "Nacho Lee, Pedro Cardenas", 5, 32.50],
+    ["87", "Urbanidad de Carreño, Juan Carreño", 4, 60.20],
+    ["72", "Aprenda a jugar dados en dos días, Ana Parra", 4, 22.80],
+    ["81", "En Vendedor de Sueños, Benito Hernandez", 4, 15.60],
+]
+
+salida = list(
+    map(
+        lambda x: (x[0], x[2] * x[3] + 15 if x[2] * x[3] < 80 else x[2] * x[3]), pedidos
+    )
+)
+
+################################################################################
+## Cuadernillo Unidad2_Taller_1_Listas por Comprensión y Funciones Especiales ##
+################################################################################
+
 numeros = list(range(51))
 
 
@@ -236,6 +257,9 @@ rango_temp_real = dict(zip(codigos, temperaturas))
 
 
 if __name__ == "__main__":
+    print("\n================= Primer Ejercicio ================")
+    print(salida)
+
     print("\n================= EJERCICIOS CUADERNILLO 1 ================")
     print(f"Ejercicio 1: {numero_primo(numeros)}")
     print(f"Ejercicio 2: {diccionario_myList(myList)}")
