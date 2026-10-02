@@ -1,3 +1,9 @@
+"""
+Integrantes:
+Camilo Andres Arias Tenjo
+Ronald Samir Molinares Sanabria
+"""
+
 from functools import reduce
 
 ###############################
@@ -31,17 +37,17 @@ pedidos = [
     [5, ("31", 5, 14.0), ("30", 12, 27.0), ("27", 4, 20.5)],
 ]
 
-factura = list(
-    map(
-        lambda pedido: [
-            pedido[0],
-            (sum(x[1] * x[2] for x in pedido[1:])) + 15
-            if sum(x[1] * x[2] for x in pedido[1:]) < 80
-            else sum(x[1] * x[2] for x in pedido[1:]),
-        ],
-        pedidos,
-    )
-)
+# factura = list(
+#     map(
+#         lambda pedido: [
+#             pedido[0],
+#             (sum(x[1] * x[2] for x in pedido[1:])) + 15
+#             if sum(x[1] * x[2] for x in pedido[1:]) < 80
+#             else sum(x[1] * x[2] for x in pedido[1:]),
+#         ],
+#         pedidos,
+#     )
+# )
 
 valores = list(
     map(
@@ -302,7 +308,7 @@ if __name__ == "__main__":
     print(salida)
 
     print("\n================= Segundo Ejercicio ================")
-    print(factura)
+    # print(factura)
     print(valores)
 
     print("\n================= EJERCICIOS CUADERNILLO 1 ================")
