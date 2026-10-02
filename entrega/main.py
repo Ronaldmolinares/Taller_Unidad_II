@@ -1,8 +1,10 @@
+from functools import reduce
+
 ###############################
 ## Taller Unidad 2 _ Punto 1 ##
 ###############################
 
-pedidos = [
+primeros_pedidos = [
     ["45", "Nacho Lee, Pedro Cardenas", 5, 32.50],
     ["87", "Urbanidad de Carreño, Juan Carreño", 4, 60.20],
     ["72", "Aprenda a jugar dados en dos días, Ana Parra", 4, 22.80],
@@ -11,9 +13,48 @@ pedidos = [
 
 salida = list(
     map(
-        lambda x: (x[0], x[2] * x[3] + 15 if x[2] * x[3] < 80 else x[2] * x[3]), pedidos
+        lambda x: (x[0], x[2] * x[3] + 15 if x[2] * x[3] < 80 else x[2] * x[3]),
+        primeros_pedidos,
     )
 )
+
+
+###############################
+## Taller Unidad 2 _ Punto 2 ##
+###############################
+
+pedidos = [
+    [1, ("45", 3, 12.5), ("27", 15, 20.5), ("74", 10, 38.5)],
+    [2, ("45", 10, 12.5), ("74", 11, 38.5)],
+    [3, ("45", 2, 12.5), ("27", 1, 20.5)],
+    [4, ("31", 6, 14.0), ("30", 9, 27.0), ("100", 15, 40.5)],
+    [5, ("31", 5, 14.0), ("30", 12, 27.0), ("27", 4, 20.5)],
+]
+
+factura = list(
+    map(
+        lambda pedido: [
+            pedido[0],
+            (sum(x[1] * x[2] for x in pedido[1:])) + 15
+            if sum(x[1] * x[2] for x in pedido[1:]) < 80
+            else sum(x[1] * x[2] for x in pedido[1:]),
+        ],
+        pedidos,
+    )
+)
+
+valores = list(
+    map(
+        lambda x: [
+            x[0],
+            (lambda total: total + 15 if total < 80 else total)(
+                reduce(lambda acc, pedido: acc + (pedido[1] * pedido[2]), x[1:], 0)
+            ),
+        ],
+        pedidos,
+    )
+)
+
 
 ################################################################################
 ## Cuadernillo Unidad2_Taller_1_Listas por Comprensión y Funciones Especiales ##
@@ -139,7 +180,7 @@ even_numbers_iterator = list(filter(lambda x: bool(x % 2 == 0), numbers))
     Respecto a la función reduce realice el ejercicio número 3, contar_letra, utilizando funciones
     lambda y reduce en una sola línea. 
 """
-from functools import reduce
+
 
 lista2 = [
     "Mexico",
@@ -259,6 +300,10 @@ rango_temp_real = dict(zip(codigos, temperaturas))
 if __name__ == "__main__":
     print("\n================= Primer Ejercicio ================")
     print(salida)
+
+    print("\n================= Segundo Ejercicio ================")
+    print(factura)
+    print(valores)
 
     print("\n================= EJERCICIOS CUADERNILLO 1 ================")
     print(f"Ejercicio 1: {numero_primo(numeros)}")
